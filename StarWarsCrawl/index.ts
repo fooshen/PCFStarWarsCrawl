@@ -37,11 +37,7 @@ export class StarWarsCrawl implements ComponentFramework.StandardControl<IInputs
 		const controlScript = "var toggle = true;function startPause(crawl){if(toggle) {crawl.style.animationPlayState = 'paused';} else { crawl.style.animationPlayState = 'running';} toggle = !toggle;}" +
 			"function restart() { var crawl = document.querySelectorAll('.crawl');crawl[0].style.animation = 'none';crawl[0].offsetWidth;crawl[0].style.animation = 'crawl 60s linear';}";
 		
-		var enablePause = context.parameters.EnablePause.raw ? context.parameters.EnablePause.raw : false;
-
-		this._scriptElement = document.createElement("script");
-		this._scriptElement.innerHTML = controlScript;
-		container.appendChild(this._scriptElement);
+		var enablePause = context.parameters.EnablePause.raw ? context.parameters.EnablePause.raw : false;		
 
 		this._rootContainer = document.createElement("div");
 		this._rootContainer.setAttribute("class", "container");
@@ -96,12 +92,10 @@ export class StarWarsCrawl implements ComponentFramework.StandardControl<IInputs
 		// Add code to update control view
 		var enablePause = context.parameters.EnablePause.raw ? context.parameters.EnablePause.raw : false;
 		if(enablePause) { 
-			this._crawlContainer.setAttribute("onclick", "javascript: startPause(this);");
-			this._crawlContainer.setAttribute("style", "cursor: hand");
+//todo
 		}
 		else { 
-			this._crawlContainer.removeAttribute("onclick");
-			this._crawlContainer.setAttribute("style", "cursor: default");
+//todo
 		}
 
 		//if restart, remove animation and add it back

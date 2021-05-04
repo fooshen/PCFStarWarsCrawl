@@ -6,8 +6,8 @@
     <property name="EpisodeNumber" display-name-key="Episode Number" description-key="Episode Number" of-type="SingleLine.Text" usage="bound" required="true" />
     <property name="EpisodeName" display-name-key="Episode Name" description-key="Episode Name" of-type="SingleLine.Text" usage="bound" required="true" />
     <property name="Play" display-name-key="Play" description-key="Plays the animation" of-type="TwoOptions" usage="bound" required="false" default-value="false" />
-    <property name="EnablePause" display-name-key="Enable Pause" description-key="Clicking on the animation will toggle between running and pause." of-type="TwoOptions" usage="bound" required="false" default-value="true" />
-     <!-- 
+    <property name="Reset" display-name-key="Reset" description-key="Reset" of-type="TwoOptions" usage="bound" required="false" default-value="false" />
+    <!-- 
       Property node's of-type attribute can be of-type-group attribute. 
       Example:
       <type-group name="numbers">

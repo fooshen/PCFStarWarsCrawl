@@ -35,6 +35,10 @@ div.container {
     transform-origin: 50% 100%;
     animation: crawl 60s linear;
   }
+
+  .pause {
+    animation-play-state: paused !important;
+  }
   
   .crawl > .title {
     font-size: 90%;

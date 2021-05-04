@@ -34,11 +34,7 @@ export class StarWarsCrawl implements ComponentFramework.StandardControl<IInputs
 	{
 		// Add control initialization code
 		//this._context = context;		
-		const controlScript = "var toggle = true;function startPause(crawl){if(toggle) {crawl.style.animationPlayState = 'paused';} else { crawl.style.animationPlayState = 'running';} toggle = !toggle;}" +
-			"function restart() { var crawl = document.querySelectorAll('.crawl');crawl[0].style.animation = 'none';crawl[0].offsetWidth;crawl[0].style.animation = 'crawl 60s linear';}";
-		
-		var enablePause = context.parameters.EnablePause.raw ? context.parameters.EnablePause.raw : false;		
-
+	
 		this._rootContainer = document.createElement("div");
 		this._rootContainer.setAttribute("class", "container");
 		
@@ -50,15 +46,13 @@ export class StarWarsCrawl implements ComponentFramework.StandardControl<IInputs
 		this._sectionContainer.setAttribute("class", "star-wars");
 
 		this._crawlContainer = document.createElement("div");
-		this._crawlContainer.setAttribute("class", "crawl");
-		if(enablePause) { 
-			this._crawlContainer.setAttribute("onclick", "javascript: startPause(this);");
-			this._crawlContainer.setAttribute("style", "cursor: hand");
-		}
+
+		var play = context.parameters.Play.raw ? context.parameters.Play.raw : true;	
+		if(play) { 
+			this._crawlContainer.setAttribute("class", "crawl") }
 		else { 
-			this._crawlContainer.removeAttribute("onclick");
-			this._crawlContainer.setAttribute("style", "cursor: default");
-		}
+			this._crawlContainer.setAttribute("class", "crawl pause"); 
+		}	
 
 		this._titleContainer = document.createElement("div");
 		this._titleContainer.setAttribute("class", "title");
@@ -90,18 +84,17 @@ export class StarWarsCrawl implements ComponentFramework.StandardControl<IInputs
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		// Add code to update control view
-		var enablePause = context.parameters.EnablePause.raw ? context.parameters.EnablePause.raw : false;
-		if(enablePause) { 
-//todo
-		}
-		else { 
-//todo
-		}
 
-		//if restart, remove animation and add it back
-		var play = context.parameters.Play.raw ? context.parameters.Play.raw: false;
-		if(play){
-			this._crawlContainer.setAttribute("class", "crawl");
+		//if reset, remove crawl from css classname		
+		var reset = context.parameters.Reset.raw ? context.parameters.Reset.raw: false;
+		var play = context.parameters.Play.raw ? context.parameters.Play.raw : false;	
+		var cssClassName = "crawl";
+		if(!play) { 
+			cssClassName = "crawl pause";
+		}	
+
+		if(!reset){
+			this._crawlContainer.setAttribute("class", cssClassName);
 		}
 		else{ 	
 			this._crawlContainer.setAttribute("class", "");
